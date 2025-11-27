@@ -1,3 +1,8 @@
 title: "Ben's Research"
 description: "Work-in-progress notes on EAP research projects for my DProf"
 theme: minima
+author: "Ben"
+markdown: kramdown
+
+header_pages: 
+  - about.md
