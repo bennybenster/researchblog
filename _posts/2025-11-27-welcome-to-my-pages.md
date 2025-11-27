@@ -6,19 +6,19 @@ tags:
 - introduction
 ---
 
-## Welcome!
-
-This is the first 'post' I am putting up. Everything here is intended to
-be reflective and work in progress. It's about personal accountability
-rather than accessibility. Sorry if you came here expecting something
-else.
-
-Just to check my citations work, I should note that: Braun & Clarke
-(2022) is the main text I am using
-
-:::: {#refs .references .csl-bib-body .hanging-indent entry-spacing="0" line-spacing="2"}
-::: {#ref-braunThematicAnalysisPractical2022 .csl-entry}
-Braun, V., & Clarke, V. (2022). *Thematic analysis: A practical guide*.
-SAGE.
-:::
-::::
+<h2 id="welcome">Welcome!</h2>
+<p>This is the first ‘post’ I am putting up. Everything here is intended
+to be reflective and work in progress. It’s about personal
+accountability rather than accessibility. Sorry if you came here
+expecting something else.</p>
+<p>Just to check my citations work, I should note that: <span
+class="citation" data-cites="braunThematicAnalysisPractical2022">Braun
+&amp; Clarke (2022)</span> is the main text I am using</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-braunThematicAnalysisPractical2022" class="csl-entry"
+role="listitem">
+Braun, V., &amp; Clarke, V. (2022). <em>Thematic analysis: A practical
+guide</em>. SAGE.
+</div>
+</div>

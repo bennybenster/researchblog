@@ -48,7 +48,7 @@ def run_pandoc_on_body(body_text: str) -> str:
             "pandoc",
             str(src),
             "-f", "markdown",
-            "-t", "markdown",
+            "-t", "html",
             "--citeproc",
             "--bibliography", BIBLIOGRAPHY,
             "--csl", CSL_FILE,
