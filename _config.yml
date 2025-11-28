@@ -12,3 +12,7 @@ header_pages:
 
 atom_feed:
   hide: true
+
+footer: 
+  copyright: 
+    name: "@ 2025 Ben Nazer"
