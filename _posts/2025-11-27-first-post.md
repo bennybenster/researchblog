@@ -11,7 +11,7 @@ tags:
 to be reflective and work in progress. It’s about personal
 accountability rather than accessibility. Sorry if you came here
 expecting something else.</p>
-<p>Just to check my citations work, I should note that: <span
+<p>Just to check my citations work, I should note that <span
 class="citation" data-cites="braunThematicAnalysisPractical2022">Braun
 &amp; Clarke (2022)</span> is the main text I am using</p>
 <h3 class="unnumbered" id="references">References</h3>
