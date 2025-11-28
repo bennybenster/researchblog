@@ -1,8 +1,11 @@
-title: "Ben's Research"
-description: "Work-in-progress notes on EAP research projects for my DProf"
-theme: jekyll-theme-slate
+title: "Ben Nazer Research"
+description: "Work-in-progress notes on EAP research projects"
+remote_theme: "mmistakes/minimal-mistakes"
+url: "https://bensresearch.space"
 author: "Ben"
 markdown: kramdown
+plugins:
+  - jekyll-include-cache
 
 header_pages: 
   - about.md

@@ -70,7 +70,7 @@ def build_post(source_path: Path):
 
     # Build Jekyll front matter
     front_matter = {
-        "layout": "post",
+        "layout": "single",
         "title": meta["title"],
         "date": date,
         "tags": meta.get("tags", []),

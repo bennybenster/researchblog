@@ -1,12 +1,12 @@
 ---
-layout: post
-title: Welcome to my pages
+layout: single
+title: First post
 date: '2025-11-27'
 tags:
 - introduction
 ---
 
-<h2 id="welcome">Welcome!</h2>
+<h2 id="hello">Hello</h2>
 <p>This is the first ‘post’ I am putting up. Everything here is intended
 to be reflective and work in progress. It’s about personal
 accountability rather than accessibility. Sorry if you came here
