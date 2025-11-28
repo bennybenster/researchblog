@@ -9,3 +9,6 @@ plugins:
 
 header_pages: 
   - about.md
+
+atom_feed:
+  hide: true
