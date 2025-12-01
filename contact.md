@@ -3,7 +3,7 @@ layout: single
 title: Contact Me
 permalink: /contact/
 ---
-## Get in touch!
+### Get in touch
 
 I am always interested in: 
 - feedback on my pages.
