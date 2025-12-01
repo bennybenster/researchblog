@@ -12,7 +12,7 @@ I am always interested in:
 
 Use the form below to send me a message.
 
-Note the form comment that the it is anonymous.
+Note the form comment that it is anonymous.
 
 If you want me to get back to you, leave an email address or phone number. 
 
