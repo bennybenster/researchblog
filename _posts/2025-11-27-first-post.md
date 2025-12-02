@@ -16,9 +16,9 @@ class="citation" data-cites="braunThematicAnalysisPractical2022">Braun
 &amp; Clarke (2022)</span> is the main text I am using</p>
 <h3 class="unnumbered" id="references">References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent"
-data-entry-spacing="0" data-line-spacing="2" role="list">
+data-line-spacing="2" role="doc-bibliography">
 <div id="ref-braunThematicAnalysisPractical2022" class="csl-entry"
-role="listitem">
+role="doc-biblioentry">
 Braun, V., &amp; Clarke, V. (2022). <em>Thematic analysis: A practical
 guide</em>. SAGE.
 </div>
