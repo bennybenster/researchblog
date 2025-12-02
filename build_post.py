@@ -8,7 +8,7 @@ import shutil
 # CONFIG: adjust these paths for your system
 BASE_PATHS = [
     Path(r"C:\Users\Ben\OneDrive - University of St Andrews\Supervision channel for Benjiman\Thematic Analysis Project Writing Files"),
-    Path(r"~\writing").expanduser()       
+    Path(r"\home\ben\writing").expanduser()       
 ]
 
 bib = None
