@@ -6,8 +6,31 @@ import tempfile
 import shutil
 
 # CONFIG: adjust these paths for your system
-BIBLIOGRAPHY = r"C:\Users\Ben\OneDrive - University of St Andrews\Supervision channel for Benjiman\Thematic Analysis Project Writing Files\My Library.bib"
-CSL_FILE = r"C:\Users\Ben\Zotero\styles\journal-of-english-for-academic-purposes.csl"
+BASE_PATHS = [
+    Path(r"C:\Users\Ben\OneDrive - University of St Andrews\Supervision channel for Benjiman\Thematic Analysis Project Writing Files")
+    Path(r"~\writing").expanduser()       
+]
+
+bib = None
+csl = None
+
+for base in BASE_PATHS:
+    bib_candidate = base / "MyLibrary.bib"
+    csl_candidate = base / "journal-of-english-for-academic-purposes.csl"
+
+    if bib_candidate.exists() and csl_candidate.exists():
+        bib = str(bib_candidate)
+        csl = str(csl_candidate)
+        break
+
+if bib is None:
+    raise FileNotFoundError(
+        "Could not find .bib and .csl in any expected locations:\n" +
+        "\n".join(str(p) for p in BASE_PATHS)
+    )
+
+BIBLIOGRAPHY = bib
+CSL_FILE = csl
 
 REPO_ROOT = Path(__file__).parent
 SOURCE_DIR = REPO_ROOT / "source"
