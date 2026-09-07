@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bensresearch.space/projects/index.html</loc>
-    <lastmod>2026-09-07T13:19:33.621Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bensresearch.space/index.html</loc>
-    <lastmod>2026-09-07T13:19:33.619Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bensresearch.space/about.html</loc>
-    <lastmod>2026-09-07T13:19:33.617Z</lastmod>
+    <loc>https://bensresearch.space/scoping-jeap/index.html</loc>
+    <lastmod>2026-09-07T14:54:55.303Z</lastmod>
   </url>
   <url>
     <loc>https://bensresearch.space/contact.html</loc>
     <lastmod>2026-09-07T13:19:33.618Z</lastmod>
   </url>
   <url>
-    <loc>https://bensresearch.space/projects/getting-published/index.html</loc>
-    <lastmod>2026-09-07T13:19:33.621Z</lastmod>
+    <loc>https://bensresearch.space/about.html</loc>
+    <lastmod>2026-09-07T13:19:33.617Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bensresearch.space/index.html</loc>
+    <lastmod>2026-09-07T14:22:30.201Z</lastmod>
   </url>
 </urlset>

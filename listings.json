@@ -1,14 +1,8 @@
 [
   {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/getting-published/index.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
-      "/projects/getting-published/index.html"
+      "/scoping-jeap/index.html"
     ]
   }
 ]
