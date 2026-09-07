@@ -1,0 +1,37 @@
+main {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+
+.csl-entry {
+  margin-bottom: 0.9em;
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+
+.listing-date,
+.listing-reading-time {
+  opacity: 0.7;
+}
+
+blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 1em;
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  div.quarto-post .metadata {
+    flex-basis: 7.5em;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  div.quarto-post .body {
+    flex-basis: auto;
+    flex-grow: 1;
+  }
+}
+
+.quarto-page-breadcrumbs { display: none; }

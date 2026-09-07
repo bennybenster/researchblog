@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Ben's Research Space"
+  site-url: "https://bensresearch.space"
+  description: "Research in progress: working notes on developing scholarship around EAP and academic writing."
+
+  navbar:
+    left:
+      - href: index.md
+        text: Home
+      - href: projects/index.md
+        text: Projects
+      - href: about.md
+        text: About
+      - href: contact.md
+        text: Contact
+
+  sidebar:
+    - id: getting-published
+      title: "Developing a project working towards publication"
+      style: floating
+      collapse-level: 2
+      contents:
+        - projects/getting-published/index.md
+
+  page-navigation: true
+  bread-crumbs: false
+
+  page-footer:
+    center: "Ben · bensresearch.space · ©2026"
+    border: false
+
+bibliography: references.bib
+
+csl: journal-of-english-for-academic-purposes.csl
+
+format:
+  html:
+    theme: pulse
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    citations-hover: true
