@@ -11,20 +11,20 @@ website:
     left:
       - href: index.md
         text: Home
-      - href: projects/index.md
-        text: Projects
+      - href: scoping-jeap/index.md
+        text: Scoping JEAP
       - href: about.md
         text: About
       - href: contact.md
         text: Contact
 
   sidebar:
-    - id: getting-published
-      title: "Developing a project working towards publication"
+    - id: scoping-jeap
+      title: "Scoping JEAP, 2024-2026"
       style: floating
       collapse-level: 2
       contents:
-        - projects/getting-published/index.md
+        - scoping-jeap/index.md
 
   page-navigation: true
   bread-crumbs: false
