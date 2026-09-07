@@ -30,7 +30,7 @@ website:
   bread-crumbs: false
 
   page-footer:
-    center: "Ben · bensresearch.space · ©2026"
+    center: "© 2026 Ben Nazer | bensresearch.space"
     border: false
 
 bibliography: references.bib
