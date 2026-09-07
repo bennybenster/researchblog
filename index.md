@@ -4,6 +4,8 @@ listing:
   - id: recent
     contents: 
       - "scoping-jeap/*.md"
+      - "!scoping-jeap/protocol.md"
+
     sort: "date desc"
     type: default
     max-items: 5

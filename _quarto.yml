@@ -25,6 +25,7 @@ website:
       collapse-level: 2
       contents:
         - scoping-jeap/index.md
+        - scoping-jeap/protocol.md
 
   page-navigation: true
   bread-crumbs: false
