@@ -23,7 +23,7 @@ The goals for setting up this space are:
 - **Open research.** I believe that research should be open, freely available and transparent.
 - **Explicit, not implicit.** I believe that when people present finished research, this hides the struggles and reality of trying to 'be' academic.
 
-The main content on this page lives under the [**Projects Section**](projects/index.md)
+There is currently one active project: [**Scoping JEAP**](scoping-jeap/index.md)
 
 ## Recently
 
