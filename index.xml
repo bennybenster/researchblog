@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Ben&#39;s Research Space</title>
+<link>https://bensresearch.space/</link>
+<atom:link href="https://bensresearch.space/index.xml" rel="self" type="application/rss+xml"/>
+<description>Research in progress: working notes on developing scholarship around EAP and academic writing.</description>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Sun, 06 Sep 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Documenting Work Towards a New Project</title>
+  <link>https://bensresearch.space/projects/getting-published/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="introducing-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-the-project">Introducing the Project</h2>
+<p>This is the information about the project. I will be citing <span class="citation" data-cites="braunThematicAnalysisPractical2022">Braun &amp; Clarke (2022)</span> frequently</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2">
+<div id="ref-braunThematicAnalysisPractical2022" class="csl-entry">
+Braun, V., &amp; Clarke, V. (2022). <em>Thematic analysis: A practical guide</em>. SAGE.
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://bensresearch.space/projects/getting-published/</guid>
+  <pubDate>Sun, 06 Sep 2026 23:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
