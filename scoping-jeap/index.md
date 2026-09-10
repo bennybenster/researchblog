@@ -1,6 +1,6 @@
 ---
-title: "Scoping JEAP, 2024-2026"
-description: "A scoping review of publication patterns and research feasibility in JEAP, 2024-2026"
+title: "Scoping JEAP, 2025-2026"
+description: "A scoping review of publication patterns and research feasibility in JEAP, 2025-2026"
 date: 2026-09-07
 date-modified: 2026-09-10
 ---
