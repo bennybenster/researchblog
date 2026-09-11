@@ -6,13 +6,11 @@ date-modified: 2026-09-11
 ---
 
 ## Introducing the Project
-This is a space to record progress in a scoping review I am working on as a way to better make sense of what kinds of research have been published in the Journal of EAP (JEAP). I am conducting this review partly because of the need to publish as an aspect of my doctoral studies. That is, a review of JEAP published articles makes sense for a doctoral student attempting to become a member of this practitioner community by contributing to the research pool. Doing so might provide direction and inspiration for my next project.
+This is a space to record progress in a scoping review I am working on as a way to better make sense of what kinds of research have been published in the Journal of EAP (JEAP). I am conducting this review partly because of the need to publish as an aspect of my doctoral studies. That is, a review of JEAP published articles makes sense for a doctoral student attempting to become a member of this practitioner community by contributing to the research pool. Doing so might provide direction and inspiration for my next project. I think this research could also be potentially interesting for practitioners in a similar position wishing to conduct independent unfunded research with the potential to publish in JEAP. One point here is that genre analysis and writing guides have helped us develop a strong understanding of the styles and format that tend to characterise publications in our field, but there is less guidance on what epistemological and methodological approaches tend to get published. That is, there is guidance on how to write, but not necessarily what to research. 
 
-One inspiration for the project work is the article "The contexts, theoretical and methodological orientation of EAP research: Evidence from empirical articles published in the Journal of English for Academic Purposes" [@riaziContextsTheoreticalMethodological2020]. I noticed, however, that the focus on 'the empirical' left other types of content uncounted. 
+One inspiration for the project work is the article "The contexts, theoretical and methodological orientation of EAP research: Evidence from empirical articles published in the Journal of English for Academic Purposes" [@riaziContextsTheoreticalMethodological2020]. I noticed, however, that the focus on 'the empirical' left other types of content uncounted. Also, having recently completed a Reflexive Thematic Analysis project based on methods discussed in @braunThematicAnalysisPractical2022 [], I have found myself wondering whether there is a predominance of positivist, rather than interpretive, research within published articles. And, of course, one way to find out what kind of publications are published in JEAP is to conduct my own analysis. 
 
-Secondly, having recently completed a Reflexive Thematic Analysis project based on methods discussed in @braunThematicAnalysisPractical2022 [], I have found myself wondering whether there is a predominance of positivist, rather than interpretive, research within published articles. And, of course, one way to find out what kind of publications are published in JEAP is to conduct my own analysis. 
-
-Finally, as a practitioner-researcher with a full-time job, doctoral studies, and the desire to be a fully engaged parent to my young child, I sometimes wonder if the barriers for entry into the conversation are structural. I question how feasible it is to produce work for publication as a sole, unfunded individual.  
+Finally, as a practitioner-researcher with a full-time job, doctoral studies, and the desire to be a fully engaged parent to my young child, I  sometimes find myself asking how others find time to complete high quality research. Are there barriers for entry into the conversation based around access to research resources? What kinds of research might be feasible for myself or similar individuals in my position?
 
 ### Research Questions
 The review aims to investigate what kinds of work appear in JEAP, on what epistemological terms and at what cost to produce. I am interested in who is able to participate in the field's published conversation. 
@@ -68,10 +66,8 @@ The pilot version of the form is outlined below:
 |Specialist needs|RQ3|Here I am thinking about advanced software or similar that puts the research out of reach of a novice researcher. Eye tracking studies for example, require the use of specialised laboratory equipment.|
 |Notes|Any|To help me take reflexive notes, as questions of the data, or highlight aspects of the article I may wish to investigate further.| 
 
-I should add here that Research Question RQ3b requires quantitative data as initially written. To determine the proportion of research articles that could feasibly have been completed by a lone researcher will required further analysis to the RQ3 data after extraction. 
-
+I should add here that Research Question RQ3b requires quantitative data as initially written. Determining the proportion of research articles that could feasibly be completed by a lone researcher will required further analysis of the RQ3 data. 
 
 ## References
-
 ::: {#refs}
 :::
