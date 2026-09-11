@@ -14,7 +14,10 @@ I downloaded to Zotero Volumes 67 - 72 (January 2024 to November 2024). I figure
 
 I have decided to move from a stated year range (e.g. 2025 - 2026) to a Volume Range. I have to decide if I can do the two whole years available to me (2024 and 2025 print publications) or just focus on, e.g. 2025. I am currently thinking I can do both 2024 AND 2025. Which would be volumes 67-78. 
 
-To 'develop my instrument' / pilot the whole process, I plan to code a small number of 2023 papers. What I need to do now is write a section that explains why I have chosen to use an extraction form and 'finalise' extraction form options for a pilot. 
+To 'develop my instrument' / pilot the process, I plan to code a small number of 2023 papers. What I need to do now is write a section that explains why I have chosen to use an extraction form and 'finalise' extraction form options for a pilot. 
+
+---
+Having completed the extraction form I can start coding. I have picked a 2023 volume at random and plan to code it in its entirety. 
 
 
 ## References
