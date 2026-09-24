@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: _site
+  resources: scoping-jeap/tools/**
 
 website:
   title: "Ben's Research Space"

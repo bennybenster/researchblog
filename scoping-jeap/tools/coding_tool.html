@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JEAP extraction</title>
+<style>
+  :root{
+    --paper:#fcfcfb; --ink:#23262a; --soft:#5a6068; --rule:#e3e1dc;
+    --accent:#2c5f73; --done:#4a7c59; --wash:#f3ebd6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:15px/1.5 "IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+    height:100vh; display:flex; flex-direction:column;
+  }
+  header{
+    padding:.7rem 1rem; border-bottom:1px solid var(--rule);
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+  }
+  header h1{font-size:1rem; margin:0; font-weight:600; letter-spacing:-.01em}
+  .grow{flex:1}
+  button{
+    font:inherit; padding:.35rem .8rem; border:1px solid var(--rule);
+    background:#fff; border-radius:3px; cursor:pointer; color:var(--ink);
+  }
+  button:hover{border-color:var(--accent); color:var(--accent)}
+  button.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  button:disabled{opacity:.4; cursor:not-allowed}
+  #progress{font-size:.85rem; color:var(--soft)}
+  #autostat{font-size:.78rem; color:var(--soft)}
+  #autostat.on{color:var(--done)}
+  #autostat.warn{color:#b3541e}
+
+  main{flex:1; display:flex; min-height:0}
+  #list{
+    width:310px; border-right:1px solid var(--rule); overflow-y:auto;
+    background:#fafaf8;
+  }
+  .item{
+    padding:.55rem .8rem; border-bottom:1px solid var(--rule);
+    cursor:pointer; font-size:.84rem; line-height:1.35;
+  }
+  .item:hover{background:#f2f2ee}
+  .item.sel{background:#fff; border-left:3px solid var(--accent); padding-left:calc(.8rem - 3px)}
+  .item .t{display:block; color:var(--ink)}
+  .item .m{display:block; color:var(--soft); font-size:.76rem; margin-top:.15rem}
+  .item .dot{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--rule); margin-right:.4rem; vertical-align:middle;
+  }
+  .item.done .dot{background:var(--done)}
+  .item.part .dot{background:#c9a227}
+
+  #form{flex:1; overflow-y:auto; padding:1.2rem 1.6rem 4rem}
+  #form h2{font-size:1.05rem; margin:0 0 .2rem; font-weight:600; line-height:1.3}
+  #form .doi{color:var(--soft); font-size:.82rem; margin-bottom:1.2rem}
+  fieldset{border:0; border-top:1px solid var(--rule); margin:0 0 1.4rem; padding:1rem 0 0}
+  legend{font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; color:var(--soft); padding:0 .5rem 0 0}
+  .row{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:.7rem}
+  label{display:block; font-size:.78rem; color:var(--soft); margin-bottom:.2rem}
+  .f{flex:1; min-width:170px}
+  select,input[type=text],textarea{
+    width:100%; font:inherit; padding:.35rem .5rem;
+    border:1px solid var(--rule); border-radius:3px; background:#fff; color:var(--ink);
+  }
+  select:focus,input:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:-1px; border-color:var(--accent)}
+  textarea{min-height:5.5rem; resize:vertical; line-height:1.55}
+  textarea.tall{min-height:8rem}
+  .gated{opacity:.45}
+  .hint{font-size:.74rem; color:var(--soft); margin:.15rem 0 0}
+  .abs{margin:0 0 1.4rem; font-size:.88rem; background:var(--wash);
+       border-left:3px solid rgba(44,95,115,.25); border-radius:0 4px 4px 0; padding:.7rem .9rem}
+  .abs p{margin:0; line-height:1.65}
+  .doi a{color:var(--accent)}
+  .drop{
+    margin:3rem auto; max-width:32rem; padding:2.5rem; text-align:center;
+    border:2px dashed var(--rule); border-radius:6px; color:var(--soft);
+  }
+  kbd{
+    font:inherit; font-size:.78rem; background:#f2f2ee; border:1px solid var(--rule);
+    border-radius:3px; padding:.05rem .3rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>JEAP extraction</h1>
+  <span id="progress"></span>
+  <span class="grow"></span>
+  <button id="open">Open CSV…</button>
+  <span id="autostat"></span>
+  <button id="new">+ New item</button>
+  <button id="del" disabled>Delete</button>
+  <button id="prev" disabled>&larr; Prev</button>
+  <button id="next" disabled>Next &rarr;</button>
+  <button id="save" class="primary" disabled>Save CSV</button>
+</header>
+
+<main>
+  <div id="list"></div>
+  <div id="form">
+    <div class="drop" id="drop">
+      <p><strong>Drop your extraction CSV here</strong><br>or <label style="display:inline; color:var(--accent); cursor:pointer; text-decoration:underline">choose a file<input type="file" id="file" accept=".csv" hidden></label></p>
+      <p class="hint">Nothing leaves your machine. The file is read in the browser;<br>
+      saving downloads a new copy for you to commit.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+/* ------------------------------------------------------------------
+   FIELD DEFINITIONS — edit these to match your codebook.
+   type: 'select' | 'text' | 'area'
+   gate: only enabled when the named field has one of these values
+------------------------------------------------------------------ */
+const SECTIONS = [
+  { legend: "Identification", fields: [
+    {k:"title",          label:"Title",          type:"text"},
+    {k:"doi",            label:"DOI",            type:"text"},
+    {k:"volume",         label:"Volume",         type:"text"}
+  ]},
+  { legend: "RQ1 — what was published", fields: [
+    {k:"genre",          label:"Genre",          type:"text"},
+    {k:"contribution_stated", label:"Contribution claimed", type:"area"},
+    {k:"contribution_evidence", label:"Evidence \\ Location",  type:"area"},
+  ]},
+  { legend: "RQ2 — epistemological terms", fields: [
+    {k:"epistemology_named", label:"Epistemology named?", type:"select", opts:["","yes","no","unclear"]},
+    {k:"epistemology_term",  label:"Language used", type:"text"},
+    {k:"methodology_named",  label:"Methodology named?",   type:"select", opts:["","yes","no","unclear"]},
+    {k:"methodology_term",   label:"Language Used", type:"text"},
+    {k:"framework_named",  label:"Framework(s) named?", type:"area"},
+    {k:"notes_and_inferences",  label:"Notes and inferences",    type:"area", tall:true},
+    {k:"evidence",     label:"Evidence \\ Location", type:"area"},
+  ]},
+  { legend: "RQ3 — cost to produce", fields: [
+    {k:"data_window",    label:"Data window (when the data was collected, as stated)", type:"text"},
+    {k:"date_received",  label:"Received",        type:"text"},
+    {k:"date_accepted",  label:"Accepted",        type:"text"},
+    {k:"n_authors",      label:"Author Count",        type:"text"},
+    {k:"extra_labour",       label:"Additional labour", type:"select", opts:["","named","disclosed-unnamed","none-mentioned","cannot-determine"]},
+    {k:"extra_labour_notes", label:"Additional labour — what and where", type:"area"},
+    {k:"funding",        label:"Funding",        type:"select", opts:["","declared","none-declared","unclear"]},
+	{k:"funding_notes",  label:"Funding — source and award, where declared", type:"text"},
+	{k:"open_access",    label:"Open Access",    type:"select", opts:["","yes","no"]},
+    {k:"n_sites",        label:"Sites",          type:"text"},
+    {k:"data_source",    label:"Data source",    type:"text"},
+    {k:"participants_n", label:"Participants",   type:"text"},
+    {k:"specialist_needs", label:"Specialist needs", type:"text"},
+  ]},
+  { legend: "Coherence", fields: [
+    {k:"coherence_notes", label:"Do the stated aims, assumptions and methods appear to align?", type:"area", tall:true},
+  ]},
+  { legend: "Record", fields: [
+    {k:"coded_on",       label:"Coded on",       type:"text"},
+    {k:"confidence",     label:"Confidence",     type:"select", opts:["","high","medium","low"]},
+    {k:"notes",          label:"Notes",          type:"area", tall:true},
+  ]},
+];
+
+/* Columns carried through from a Zotero or Crossref export. Everything
+   else in the source file is dropped when you save. Add to this list if
+   you want to keep something. */
+const CARRY = [
+  "author",            // from Zotero 'Author'
+  "abstract",          // from Zotero 'Abstract Note' — shown while coding
+  "url",
+  "pdf",               // from Zotero 'File Attachments'
+];
+
+// Fields that must be filled for an item to count as "done".
+const REQUIRED = ["genre","confidence"];
+
+let COLS = [], ROWS = [], cur = -1, dirty = false;
+
+/* ---------------- CSV ---------------- */
+function parseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  text = text.replace(/^\uFEFF/,'').replace(/\r\n/g,'\n');
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; }
+      else cell+=c;
+    } else if(c==='"'){ q=true; }
+    else if(c===','){ row.push(cell); cell=''; }
+    else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
+    else cell+=c;
+  }
+  if(cell!==''||row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.length>1||r[0]!=='');
+}
+function toCSV(cols,rows){
+  const esc=v=>{v=(v==null?'':String(v)); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  return [cols.map(esc).join(',')].concat(rows.map(r=>cols.map(c=>esc(r[c])).join(','))).join('\n');
+}
+
+/* ---------------- state ---------------- */
+function statusOf(r){
+  const filled = REQUIRED.filter(k=>r[k]&&r[k].trim()).length;
+  if(filled===REQUIRED.length) return 'done';
+  if(Object.keys(r).some(k=>!['doi','volume','title','author_surname'].includes(k)&&r[k]&&r[k].trim())) return 'part';
+  return '';
+}
+function renderList(){
+  const el=document.getElementById('list');
+  el.innerHTML = ROWS.map((r,i)=>{
+    const st=statusOf(r);
+    const title=(r.title||r.Title||'(untitled)').slice(0,72);
+    return `<div class="item ${st} ${i===cur?'sel':''}" data-i="${i}">
+      <span class="t"><span class="dot"></span>${escapeHtml(title)}</span>
+      <span class="m">v${escapeHtml(r.volume||r.Volume||'?')} &middot; ${escapeHtml(r.genre||'uncoded')}</span>
+    </div>`;
+  }).join('');
+  [...el.querySelectorAll('.item')].forEach(d=>d.onclick=()=>select(+d.dataset.i));
+  const done=ROWS.filter(r=>statusOf(r)==='done').length;
+  const p=document.getElementById('progress');
+  const d=p.dataset.dropped;
+  p.textContent=`${done} of ${ROWS.length} coded` + (d&&+d>0?`  ·  ${d} source columns dropped`:'');
+}
+function updateListEntry(i){
+  const el=document.querySelector(`.item[data-i="${i}"]`);
+  if(!el){ renderList(); return; }
+  const r=ROWS[i], st=statusOf(r);
+  el.className=`item ${st} ${i===cur?'sel':''}`;
+  el.innerHTML=`<span class="t"><span class="dot"></span>${escapeHtml((r.title||r.Title||'(untitled)').slice(0,72))}</span>
+    <span class="m">v${escapeHtml(r.volume||r.Volume||'?')} &middot; ${escapeHtml(r.genre||'uncoded')}</span>`;
+  el.onclick=()=>select(i);
+  const done=ROWS.filter(x=>statusOf(x)==='done').length;
+  const p=document.getElementById('progress');
+  const d=p.dataset.dropped;
+  p.textContent=`${done} of ${ROWS.length} coded` + (d&&+d>0?`  ·  ${d} source columns dropped`:'');
+}
+
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function select(i){
+  if(i<0||i>=ROWS.length) return;
+  cur=i; renderList(); renderForm();
+  const sel=document.querySelector('.item.sel'); if(sel) sel.scrollIntoView({block:'nearest'});
+  document.getElementById('prev').disabled = cur<=0;
+  document.getElementById('next').disabled = cur>=ROWS.length-1;
+  document.getElementById('del').disabled = cur<0;
+}
+
+function renderForm(){
+  const r=ROWS[cur], f=document.getElementById('form');
+  let links=[];
+  if(r.pdf) links.push(`<a href="file:///${escapeHtml(r.pdf.replace(/\\/g,'/'))}">open PDF</a>`);
+  if(r.url) links.push(`<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">publisher page</a>`);
+  let html=`<h2>${escapeHtml(r.title||'(untitled)')}</h2>
+            <div class="doi">${escapeHtml(r.doi||'')}${r.author?' &middot; '+escapeHtml(r.author):''}
+            ${links.length?' &middot; '+links.join(' &middot; '):''}</div>`;
+  if(r.abstract) html+=`<div class="abs"><p>${escapeHtml(r.abstract)}</p></div>`;
+  for(const s of SECTIONS){
+    const gated = s.gate && !s.gate.allow.includes(r[s.gate.field]||'');
+    html+=`<fieldset class="${gated?'gated':''}"><legend>${s.legend}${gated?' &mdash; not applicable':''}</legend>`;
+    let buf=[];
+    for(const fd of s.fields){
+      const v=escapeHtml(r[fd.k]||'');
+      let input;
+      if(fd.type==='select'){
+        input=`<select data-k="${fd.k}" ${gated?'disabled':''}>`+
+          fd.opts.map(o=>`<option value="${escapeHtml(o)}"${(r[fd.k]||'')===o?' selected':''}>${escapeHtml(o||'—')}</option>`).join('')+
+          `</select>`;
+      } else if(fd.type==='area'){
+        input=`<textarea data-k="${fd.k}" class="${fd.tall?'tall':''}" ${gated?'disabled':''}>${v}</textarea>`;
+      } else {
+        input=`<input type="text" data-k="${fd.k}" value="${v}" ${gated?'disabled':''}>`;
+      }
+      const block=`<div class="f"><label>${fd.label}</label>${input}</div>`;
+      if(fd.type==='area'){ if(buf.length){html+=`<div class="row">${buf.join('')}</div>`;buf=[];} html+=`<div class="row">${block}</div>`; }
+      else { buf.push(block); if(buf.length===3){html+=`<div class="row">${buf.join('')}</div>`;buf=[];} }
+    }
+    if(buf.length) html+=`<div class="row">${buf.join('')}</div>`;
+    html+=`</fieldset>`;
+  }
+  f.innerHTML=html;
+  f.querySelectorAll('[data-k]').forEach(el=>{
+    el.oninput=el.onchange=()=>{
+      ROWS[cur][el.dataset.k]=el.value; dirty=true;
+      // Update only the selected entry in the list. Rebuilding the whole
+      // list on every keystroke destroys the element being typed into.
+      updateListEntry(cur);
+    };
+  });
+  f.scrollTop=0;
+}
+
+/* ---------------- load / save ---------------- */
+// Zotero / Crossref column name -> our name
+const ALIASES = {
+  "DOI":"doi", "Title":"title", "Volume":"volume", "Author":"author",
+  "Abstract Note":"abstract", "Url":"url", "URL":"url",
+  "File Attachments":"pdf", "Date":"date_published",
+};
+
+function load(text){
+  const raw=parseCSV(text);
+  const src=raw[0];
+
+  // the columns we will keep, in a sensible order
+  const codebook=[]; 
+  for(const s of SECTIONS) for(const fd of s.fields) if(!codebook.includes(fd.k)) codebook.push(fd.k);
+  COLS = codebook.concat(CARRY.filter(c=>!codebook.includes(c)));
+
+  ROWS = raw.slice(1).map(cells=>{
+    const src_row={}; src.forEach((c,i)=>src_row[c]=cells[i]??'');
+    const o={}; COLS.forEach(c=>o[c]='');
+    // copy anything whose name matches, directly or via an alias
+    for(const [k,v] of Object.entries(src_row)){
+      const name = ALIASES[k] || k;
+      if(COLS.includes(name) && v) o[name]=v;
+    }
+    return o;
+  });
+
+  // tell the user what was dropped
+  const kept = src.filter(c=>COLS.includes(ALIASES[c]||c)).length;
+  const dropped = src.length - kept;
+  document.getElementById('progress').dataset.dropped = dropped;
+  document.getElementById('save').disabled=false;
+  select(0);
+
+  try{
+    const raw = localStorage.getItem(SNAP_KEY);
+    if(raw){
+      const snap = JSON.parse(raw);
+      const done = rs => rs.filter(r=>REQUIRED.every(k=>r[k]&&String(r[k]).trim())).length;
+      if(snap.rows.length===ROWS.length && done(snap.rows) > done(ROWS)){
+        if(confirm(`A local snapshot from ${new Date(snap.when).toLocaleString()} has `+
+                   `${done(snap.rows)} items coded; this file has ${done(ROWS)}.\n\nRestore the snapshot?`)){
+          COLS=snap.cols; ROWS=snap.rows; dirty=true; select(0);
+        }
+      }
+    }
+  }catch(e){}
+  if(dropped>0) console.log(`${dropped} source columns dropped; ${COLS.length} kept.`);
+}
+document.getElementById('file').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  f.text().then(load);
+};
+const drop=document.getElementById('drop');
+document.body.ondragover=e=>{e.preventDefault();};
+document.body.ondrop=e=>{
+  e.preventDefault();
+  const f=e.dataTransfer.files[0];
+  if(f && /\.csv$/i.test(f.name)) f.text().then(load);
+};
+document.getElementById('new').onclick=()=>{
+  if(!COLS.length){
+    // starting from scratch: build columns from the codebook
+    COLS=['title'];
+    for(const sec of SECTIONS) for(const fd of sec.fields) if(!COLS.includes(fd.k)) COLS.push(fd.k);
+    document.getElementById('save').disabled=false;
+  }
+  const blank={}; COLS.forEach(c=>blank[c]='');
+  blank.title='(new item)';
+  blank.coded_on=new Date().toISOString().slice(0,10);
+  ROWS.push(blank); dirty=true;
+  select(ROWS.length-1);
+  const f=document.querySelector('#form input[data-k="doi"]'); if(f) f.focus();
+};
+
+document.getElementById('del').onclick=()=>{
+  if(cur<0) return;
+  const t=(ROWS[cur].title||ROWS[cur].Title||'this item').slice(0,60);
+  if(!confirm(`Delete "${t}"?\n\nThis only changes the copy in the browser. Your\nsaved CSV is untouched until you click Save.`)) return;
+  ROWS.splice(cur,1); dirty=true;
+  if(!ROWS.length){ cur=-1; renderList(); document.getElementById('form').innerHTML='<div class="drop">All items deleted. Use <strong>+ New item</strong> or reload a CSV.</div>'; document.getElementById('del').disabled=true; return; }
+  select(Math.min(cur, ROWS.length-1));
+};
+
+/* ---------------- autosave ----------------
+   1. File System Access API (Chrome/Edge): pick the CSV once with
+      "Open CSV…", then the tool writes back to that file every 20s and
+      whenever the window loses focus.
+   2. localStorage snapshot: crash-recovery copy in any browser, offered
+      back on next load if it holds more coded items than the file.
+------------------------------------------------ */
+let fileHandle = null;
+const SNAP_KEY = 'jeap-extraction-snapshot';
+
+function setStat(txt, cls){
+  const el=document.getElementById('autostat');
+  el.textContent=txt; el.className=cls||'';
+}
+
+function snapshot(){
+  try{ localStorage.setItem(SNAP_KEY, JSON.stringify({when:Date.now(), cols:COLS, rows:ROWS})); }
+  catch(e){}
+}
+
+async function writeToFile(){
+  if(!fileHandle || !ROWS.length) return false;
+  try{
+    let perm = await fileHandle.queryPermission({mode:'readwrite'});
+    if(perm!=='granted') perm = await fileHandle.requestPermission({mode:'readwrite'});
+    if(perm!=='granted'){ setStat('autosave needs permission','warn'); return false; }
+    const w = await fileHandle.createWritable();
+    await w.write(toCSV(COLS,ROWS));
+    await w.close();
+    dirty=false;
+    setStat('saved '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),'on');
+    return true;
+  }catch(e){ setStat('autosave failed — use Save CSV','warn'); return false; }
+}
+
+async function autosave(){
+  if(!ROWS.length) return;
+  snapshot();
+  if(dirty && fileHandle) await writeToFile();
+}
+setInterval(autosave, 20000);
+window.addEventListener('blur', autosave);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) autosave(); });
+
+document.getElementById('open').onclick=async()=>{
+  if(!window.showOpenFilePicker){
+    setStat('no file autosave in this browser','warn');
+    document.getElementById('file').click();
+    return;
+  }
+  try{
+    const [h] = await window.showOpenFilePicker({types:[{description:'CSV', accept:{'text/csv':['.csv']}}]});
+    fileHandle = h;
+    load(await (await h.getFile()).text());
+    setStat('autosaving to '+h.name,'on');
+  }catch(e){}
+};
+
+document.getElementById('save').onclick=()=>{
+  const blob=new Blob([toCSV(COLS,ROWS)],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='extraction.csv';
+  a.click();
+  dirty=false;
+};
+document.getElementById('prev').onclick=()=>select(cur-1);
+document.getElementById('next').onclick=()=>select(cur+1);
+
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,select')) return;
+  if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();select(cur+1);}
+  if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();select(cur-1);}
+});
+window.onbeforeunload=()=>dirty?'You have unsaved coding.':null;
+</script>
+</body>
+</html>
