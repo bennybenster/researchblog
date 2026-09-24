@@ -28,7 +28,7 @@ website:
         - scoping-jeap/index.md
         - scoping-jeap/log.md
         - scoping-jeap/protocol.md
-        - scoping-jeap/tools/coding_tool.html
+        - scoping-jeap/tools/coding_tool.md
 
   page-navigation: true
   bread-crumbs: false
