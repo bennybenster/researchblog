@@ -5,7 +5,8 @@ date: 2026-09-24
 date-modified: 2026-09-24
 ---
 
-The extraction form on the [main page](../index.html) describes what is recorded for each item and why. This page briefly describes the [html tool](./coding_tool.html) I used to support the extraction process.
+The extraction form on the [main page](../index.html) describes what is recorded for each item and why. This page briefly describes the [html tool](./coding_tool.html){target="_blank" rel="noopener"}
+ I used to support the extraction process.
 
 ## What it is 
 I consulted Claude.ai (a generative AI tool) to help me develop a tool that uses html code to simplify the extraction process. It accepts a .csv file exported from Zotero, locally loads it (no data is sent anywhere), and allows it to be edited and saved. Items (journal articles) are shown one at a time with free-text fields to type in and dropdowns where appropriate. It will update the file every 20 seconds as a kind of autosave feature.
