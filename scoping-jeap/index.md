@@ -1,6 +1,6 @@
 ---
-title: "Scoping JEAP, 2024-2025"
-description: "A scoping review of publication patterns and research feasibility in JEAP, 2024-2025"
+title: "Scoping JEAP, 2025"
+description: "A scoping review of publication patterns and research feasibility in JEAP, 2025"
 date: 2026-09-07
 date-modified: 2026-09-24
 ---
@@ -10,10 +10,11 @@ This is a space to record progress in a scoping review I am working on as a way 
 
 One inspiration for the project work is the article "The contexts, theoretical and methodological orientation of EAP research: Evidence from empirical articles published in the Journal of English for Academic Purposes" [@riaziContextsTheoreticalMethodological2020]. I noticed, however, that the focus on 'the empirical' left other types of content uncounted. Also, having recently completed a Reflexive Thematic Analysis project based on methods discussed in @braunThematicAnalysisPractical2022 [], I have found myself wondering whether there is a predominance of positivist, rather than interpretive, research within published articles. And, of course, one way to find out what kind of publications are published in JEAP is to conduct my own analysis. 
 
-Finally, as a practitioner-researcher with a full-time job, doctoral studies, and the desire to be a fully engaged parent to my young child, I sometimes find myself asking how others find time to complete high quality research. Are there barriers for entry into the conversation based around access to research resources? What kinds of research might be feasible for myself or similar individuals in my position?
+Finally, as a practitioner-researcher with a full-time job, d
+octoral studies, and the desire to be a fully engaged parent to my young child, I sometimes find myself asking how others find time to complete high quality research. Are there barriers for entry into the conversation based around access to research resources? What kinds of research might be feasible for myself or similar individuals in my position?
 
 ### Research Questions
-The review aims to investigate what kinds of work appear in JEAP, on what epistemological terms and at what cost to produce. I am interested in who is able to participate in the field's published conversation. My initial plan is to focus on the volumes published (in print) in 2024 and 2025, specifically volumes 67 to 78.
+The review aims to investigate what kinds of work appear in JEAP, on what epistemological terms and at what cost to produce. I am interested in who is able to participate in the field's published conversation. My initial plan is to focus on the volumes published (in print) in 2025, specifically volumes 73 to 78. Initially, I had conceived the project to span two or more years, but I have decided to research one complete year initially to manage the scope of the project. 
 
 The (draft) research questions are: 
 
