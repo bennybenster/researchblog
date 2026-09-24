@@ -1,4 +1,5 @@
 /.quarto/
 /_site/
+/scoping-jeap/csvs
 
 **/*.quarto_ipynb
