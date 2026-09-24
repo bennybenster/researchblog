@@ -1,10 +1,17 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Me",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to my personal research space",
     "section": "",
-    "text": "I’m Ben, an Associate Lecturer at UCL focusing on materials development for our CLIE Pre-sessional Course.\nI am also a part-time student, which is why I started this page. I am studying at the University of St. Andrews, and through my Doctoral Studies (to become a Doctor of Professional Practice), I have set myself the ambitious goal of completing high quality research studies that are practice focused. That is, I hope to use research projects and methods to improve the quality of the pre-sessional course in terms of teaching and learning, as well as the student and teacher experience.\nMy main interest is in understanding how students tackle the demands of a pre-sessional research project that involves writing from sources."
+    "text": "The plan is to document reflections on my research projects related to pre-sessional research, especially where they sit outside of standard outputs for work such as research articles.\nThe goals for setting up this space are:\nThere is currently one active project: Scoping JEAP"
+  },
+  {
+    "objectID": "index.html#recently-updated",
+    "href": "index.html#recently-updated",
+    "title": "Welcome to my personal research space",
+    "section": "Recently Updated",
+    "text": "Recently Updated\n\n\n\n\n\nResearch Log\n\n\nNotes in progress.\n\n\n\n\n\nSep 10, 2026\n\n\n\n\n\n\n\nScoping JEAP, 2024-2025\n\n\nA scoping review of publication patterns and research feasibility in JEAP, 2024-2025\n\n\n\n\n\nSep 7, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "scoping-jeap/index.html",
@@ -95,25 +102,11 @@
     ]
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact Me",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
     "section": "",
-    "text": "Get in touch\nI am always interested in:\n\nfeedback on my pages\ndiscussions around research and EAP\nsuggestions for research collaboration or similar\n\nUse the form below to send me a message.\nNote the form comment that it is anonymous.\nIf you want me to get back to you, leave an email address or phone number."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to my personal research space",
-    "section": "",
-    "text": "The plan is to document reflections on my research projects related to pre-sessional research, especially where they sit outside of standard outputs for work such as research articles.\nThe goals for setting up this space are:\nThere is currently one active project: Scoping JEAP"
-  },
-  {
-    "objectID": "index.html#recently-updated",
-    "href": "index.html#recently-updated",
-    "title": "Welcome to my personal research space",
-    "section": "Recently Updated",
-    "text": "Recently Updated\n\n\n\n\n\nResearch Log\n\n\nNotes in progress.\n\n\n\n\n\nSep 10, 2026\n\n\n\n\n\n\n\nScoping JEAP, 2024-2025\n\n\nA scoping review of publication patterns and research feasibility in JEAP, 2024-2025\n\n\n\n\n\nSep 7, 2026\n\n\n\n\n\nNo matching items"
+    "text": "I’m Ben, an Associate Lecturer at UCL focusing on materials development for our CLIE Pre-sessional Course.\nI am also a part-time student, which is why I started this page. I am studying at the University of St. Andrews, and through my Doctoral Studies (to become a Doctor of Professional Practice), I have set myself the ambitious goal of completing high quality research studies that are practice focused. That is, I hope to use research projects and methods to improve the quality of the pre-sessional course in terms of teaching and learning, as well as the student and teacher experience.\nMy main interest is in understanding how students tackle the demands of a pre-sessional research project that involves writing from sources."
   },
   {
     "objectID": "scoping-jeap/tools/coding_tool_description.html",
@@ -158,5 +151,12 @@
       "Home",
       "Project Protocol"
     ]
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact Me",
+    "section": "",
+    "text": "Get in touch\nI am always interested in:\n\nfeedback on my pages\ndiscussions around research and EAP\nsuggestions for research collaboration or similar\n\nUse the form below to send me a message.\nNote the form comment that it is anonymous.\nIf you want me to get back to you, leave an email address or phone number."
   }
 ]
