@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-09-07">
+<meta name="dcterms.date" content="2026-09-24">
+<meta name="description" content="A browser based form for recording extraction data, written with the help of a Generative AI tool.">
 
-<title>Project Protocol – Ben’s Research Space</title>
+<title>Extraction form tool – Ben’s Research Space</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,25 +31,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../scoping-jeap/tools/coding_tool_description.html" rel="next">
-<link href="../scoping-jeap/log.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e4e5fc554ff6d11e35549898add934ff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../scoping-jeap/protocol.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e4e5fc554ff6d11e35549898add934ff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Ben’s Research Space</span>
     </a>
   </div>
@@ -99,19 +99,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../scoping-jeap/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../scoping-jeap/index.html" aria-current="page"> 
 <span class="menu-text">Scoping JEAP</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html"> 
+    <a class="nav-link" href="../../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Project Protocol</h1>
+          <h1 class="quarto-secondary-nav-title">Extraction form tool</h1>
         </a>     
     </div>
   </nav>
@@ -139,25 +139,25 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../scoping-jeap/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../scoping-jeap/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Scoping JEAP, 2024-2025</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../scoping-jeap/log.html" class="sidebar-item-text sidebar-link">
+  <a href="../../scoping-jeap/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Research Log</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../scoping-jeap/protocol.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../scoping-jeap/protocol.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Protocol</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../scoping-jeap/tools/coding_tool_description.html" class="sidebar-item-text sidebar-link">
+  <a href="../../scoping-jeap/tools/coding_tool_description.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Extraction form tool</span></a>
   </div>
 </li>
@@ -171,7 +171,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#placeholder" id="toc-placeholder" class="nav-link active" data-scroll-target="#placeholder">Placeholder</a></li>
+  <li><a href="#what-it-is" id="toc-what-it-is" class="nav-link active" data-scroll-target="#what-it-is">What it is</a></li>
+  <li><a href="#using-it" id="toc-using-it" class="nav-link" data-scroll-target="#using-it">Using it</a></li>
   </ul>
 </nav>
     </div>
@@ -180,9 +181,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Project Protocol</h1>
+<h1 class="title d-none d-lg-block">Extraction form tool</h1>
 </div>
 
+<div>
+  <div class="description">
+    A browser based form for recording extraction data, written with the help of a Generative AI tool.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -191,10 +197,16 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 7, 2026</p>
+      <p class="date">September 24, 2026</p>
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 24, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -203,9 +215,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="placeholder" class="level3">
-<h3 class="anchored" data-anchor-id="placeholder">Placeholder</h3>
-<p>Nothing to see here yet</p>
+<p>The extraction form on the <a href="../index.html">main page</a> describes what is recorded for each item and why. This page briefly describes the <a href="./coding_tool.html">html tool</a> I used to support the extraction process.</p>
+<section id="what-it-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-is">What it is</h2>
+<p>I consulted Claude.ai (a generative AI tool) to help me develop a tool that uses html code to simplify the extraction process. It accepts a .csv file exported from Zotero, locally loads it (no data is sent anywhere), and allows it to be edited and saved. Items (journal articles) are shown one at a time with free-text fields to type in and dropdowns where appropriate. It will update the file every 20 seconds as a kind of autosave feature.</p>
+<p>Essentially it is a tool for editing and saving a file that holds the data extracted for the analysis.</p>
+</section>
+<section id="using-it" class="level2">
+<h2 class="anchored" data-anchor-id="using-it">Using it</h2>
+<p>Export a collection from Zotero as CSV. Open the tool, click <strong>Open CSV…</strong> and select the file. The tool maps Zotero’s column names to its own, discards the columns it doesn’t need and adds any extraction fields that are missing.</p>
+<p>Nothing is transmitted anywhere. The file is read and written locally through the browser and the page makes no network requests.</p>
+<p>It is added here ‘as is’ as part of working towards a transparent process. Anyone could, if they wanted to develop something similar, download the html file and edit the field definitions to suit their own extraction project.</p>
 
 
 </section>
@@ -613,14 +633,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../scoping-jeap/log.html" class="pagination-link" aria-label="Research Log">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Research Log</span>
+      <a href="../../scoping-jeap/protocol.html" class="pagination-link" aria-label="Project Protocol">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project Protocol</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../scoping-jeap/tools/coding_tool_description.html" class="pagination-link" aria-label="Extraction form tool">
-        <span class="nav-page-text">Extraction form tool</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -1,661 +1,454 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="dcterms.date" content="2026-09-24">
-<meta name="description" content="A browser based form for recording extraction data, written with the help of a Generative AI tool.">
-
-<title>Extraction form tool – Ben’s Research Space</title>
+<title>JEAP extraction</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-</style>
-
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../scoping-jeap/protocol.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e4e5fc554ff6d11e35549898add934ff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+  :root{
+    --paper:#fcfcfb; --ink:#23262a; --soft:#5a6068; --rule:#e3e1dc;
+    --accent:#2c5f73; --done:#4a7c59; --wash:#f3ebd6;
   }
-}</script>
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:15px/1.5 "IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+    height:100vh; display:flex; flex-direction:column;
+  }
+  header{
+    padding:.7rem 1rem; border-bottom:1px solid var(--rule);
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+  }
+  header h1{font-size:1rem; margin:0; font-weight:600; letter-spacing:-.01em}
+  .grow{flex:1}
+  button{
+    font:inherit; padding:.35rem .8rem; border:1px solid var(--rule);
+    background:#fff; border-radius:3px; cursor:pointer; color:var(--ink);
+  }
+  button:hover{border-color:var(--accent); color:var(--accent)}
+  button.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  button:disabled{opacity:.4; cursor:not-allowed}
+  #progress{font-size:.85rem; color:var(--soft)}
+  #autostat{font-size:.78rem; color:var(--soft)}
+  #autostat.on{color:var(--done)}
+  #autostat.warn{color:#b3541e}
 
+  main{flex:1; display:flex; min-height:0}
+  #list{
+    width:310px; border-right:1px solid var(--rule); overflow-y:auto;
+    background:#fafaf8;
+  }
+  .item{
+    padding:.55rem .8rem; border-bottom:1px solid var(--rule);
+    cursor:pointer; font-size:.84rem; line-height:1.35;
+  }
+  .item:hover{background:#f2f2ee}
+  .item.sel{background:#fff; border-left:3px solid var(--accent); padding-left:calc(.8rem - 3px)}
+  .item .t{display:block; color:var(--ink)}
+  .item .m{display:block; color:var(--soft); font-size:.76rem; margin-top:.15rem}
+  .item .dot{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--rule); margin-right:.4rem; vertical-align:middle;
+  }
+  .item.done .dot{background:var(--done)}
+  .item.part .dot{background:#c9a227}
 
-<link rel="stylesheet" href="../../styles.css">
+  #form{flex:1; overflow-y:auto; padding:1.2rem 1.6rem 4rem}
+  #form h2{font-size:1.05rem; margin:0 0 .2rem; font-weight:600; line-height:1.3}
+  #form .doi{color:var(--soft); font-size:.82rem; margin-bottom:1.2rem}
+  fieldset{border:0; border-top:1px solid var(--rule); margin:0 0 1.4rem; padding:1rem 0 0}
+  legend{font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; color:var(--soft); padding:0 .5rem 0 0}
+  .row{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:.7rem}
+  label{display:block; font-size:.78rem; color:var(--soft); margin-bottom:.2rem}
+  .f{flex:1; min-width:170px}
+  select,input[type=text],textarea{
+    width:100%; font:inherit; padding:.35rem .5rem;
+    border:1px solid var(--rule); border-radius:3px; background:#fff; color:var(--ink);
+  }
+  select:focus,input:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:-1px; border-color:var(--accent)}
+  textarea{min-height:5.5rem; resize:vertical; line-height:1.55}
+  textarea.tall{min-height:8rem}
+  .gated{opacity:.45}
+  .hint{font-size:.74rem; color:var(--soft); margin:.15rem 0 0}
+  .abs{margin:0 0 1.4rem; font-size:.88rem; background:var(--wash);
+       border-left:3px solid rgba(44,95,115,.25); border-radius:0 4px 4px 0; padding:.7rem .9rem}
+  .abs p{margin:0; line-height:1.65}
+  .doi a{color:var(--accent)}
+  .drop{
+    margin:3rem auto; max-width:32rem; padding:2.5rem; text-align:center;
+    border:2px dashed var(--rule); border-radius:6px; color:var(--soft);
+  }
+  kbd{
+    font:inherit; font-size:.78rem; background:#f2f2ee; border:1px solid var(--rule);
+    border-radius:3px; padding:.05rem .3rem;
+  }
+</style>
 </head>
+<body>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
-
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Ben’s Research Space</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../../scoping-jeap/index.html" aria-current="page"> 
-<span class="menu-text">Scoping JEAP</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../contact.html"> 
-<span class="menu-text">Contact</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Extraction form tool</h1>
-        </a>     
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../scoping-jeap/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scoping JEAP, 2024-2025</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../scoping-jeap/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Research Log</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../scoping-jeap/protocol.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Protocol</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../scoping-jeap/tools/coding_tool.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Extraction form tool</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-it-is" id="toc-what-it-is" class="nav-link active" data-scroll-target="#what-it-is">What it is</a></li>
-  <li><a href="#using-it" id="toc-using-it" class="nav-link" data-scroll-target="#using-it">Using it</a></li>
-  </ul>
-</nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Extraction form tool</h1>
-</div>
-
-<div>
-  <div class="description">
-    A browser based form for recording extraction data, written with the help of a Generative AI tool.
-  </div>
-</div>
-
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 24, 2026</p>
-    </div>
-  </div>
-  
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 24, 2026</p>
-    </div>
-  </div>
-    
-  </div>
-  
-
-
+<header>
+  <h1>JEAP extraction</h1>
+  <span id="progress"></span>
+  <span class="grow"></span>
+  <button id="open">Open CSV…</button>
+  <span id="autostat"></span>
+  <button id="new">+ New item</button>
+  <button id="del" disabled>Delete</button>
+  <button id="prev" disabled>&larr; Prev</button>
+  <button id="next" disabled>Next &rarr;</button>
+  <button id="save" class="primary" disabled>Save CSV</button>
 </header>
 
+<main>
+  <div id="list"></div>
+  <div id="form">
+    <div class="drop" id="drop">
+      <p><strong>Drop your extraction CSV here</strong><br>or <label style="display:inline; color:var(--accent); cursor:pointer; text-decoration:underline">choose a file<input type="file" id="file" accept=".csv" hidden></label></p>
+      <p class="hint">Nothing leaves your machine. The file is read in the browser;<br>
+      saving downloads a new copy for you to commit.</p>
+    </div>
+  </div>
+</main>
 
-<p>The extraction form on the <a href="../index.html">main page</a> describes what is recorded for each item and why. This page briefly describes the <a href="./coding_tool.html">html tool</a> I used to support the extraction process.</p>
-<section id="what-it-is" class="level2">
-<h2 class="anchored" data-anchor-id="what-it-is">What it is</h2>
-<p>I consulted Claude.ai (a generative AI tool) to help me develop a tool that uses html code to simplify the extraction process. It accepts a .csv file exported from Zotero, locally loads it (no data is sent anywhere), and allows it to be edited and saved. Items (journal articles) are shown one at a time with free-text fields to type in and dropdowns where appropriate. It will update the file every 20 seconds as a kind of autosave feature.</p>
-<p>Essentially it is a tool for editing and saving a file that holds the data extracted for the analysis.</p>
-</section>
-<section id="using-it" class="level2">
-<h2 class="anchored" data-anchor-id="using-it">Using it</h2>
-<p>Export a collection from Zotero as CSV. Open the tool, click <strong>Open CSV…</strong> and select the file. The tool maps Zotero’s column names to its own, discards the columns it doesn’t need and adds any extraction fields that are missing.</p>
-<p>Nothing is transmitted anywhere. The file is read and written locally through the browser and the page makes no network requests.</p>
-<p>It is added here ‘as is’ as part of working towards a transparent process. Anyone could, if they wanted to develop something similar, download the html file and edit the field definitions to suit their own extraction project.</p>
+<script>
+/* ------------------------------------------------------------------
+   FIELD DEFINITIONS — edit these to match your codebook.
+   type: 'select' | 'text' | 'area'
+   gate: only enabled when the named field has one of these values
+------------------------------------------------------------------ */
+const SECTIONS = [
+  { legend: "Identification", fields: [
+    {k:"title",          label:"Title",          type:"text"},
+    {k:"doi",            label:"DOI",            type:"text"},
+    {k:"volume",         label:"Volume",         type:"text"}
+  ]},
+  { legend: "RQ1 — what was published", fields: [
+    {k:"genre",          label:"Genre",          type:"text"},
+    {k:"contribution_stated", label:"Contribution claimed", type:"area"},
+    {k:"contribution_evidence", label:"Evidence \\ Location",  type:"area"},
+  ]},
+  { legend: "RQ2 — epistemological terms", fields: [
+    {k:"epistemology_named", label:"Epistemology named?", type:"select", opts:["","yes","no","unclear"]},
+    {k:"epistemology_term",  label:"Language used", type:"text"},
+    {k:"methodology_named",  label:"Methodology named?",   type:"select", opts:["","yes","no","unclear"]},
+    {k:"methodology_term",   label:"Language Used", type:"text"},
+    {k:"framework_named",  label:"Framework(s) named?", type:"area"},
+    {k:"notes_and_inferences",  label:"Notes and inferences",    type:"area", tall:true},
+    {k:"evidence",     label:"Evidence \\ Location", type:"area"},
+  ]},
+  { legend: "RQ3 — cost to produce", fields: [
+    {k:"data_window",    label:"Data window (when the data was collected, as stated)", type:"text"},
+    {k:"date_received",  label:"Received",        type:"text"},
+    {k:"date_accepted",  label:"Accepted",        type:"text"},
+    {k:"n_authors",      label:"Author Count",        type:"text"},
+    {k:"extra_labour",       label:"Additional labour", type:"select", opts:["","named","disclosed-unnamed","none-mentioned","cannot-determine"]},
+    {k:"extra_labour_notes", label:"Additional labour — what and where", type:"area"},
+    {k:"funding",        label:"Funding",        type:"select", opts:["","declared","none-declared","unclear"]},
+	{k:"funding_notes",  label:"Funding — source and award, where declared", type:"text"},
+	{k:"open_access",    label:"Open Access",    type:"select", opts:["","yes","no"]},
+    {k:"n_sites",        label:"Sites",          type:"text"},
+    {k:"data_source",    label:"Data source",    type:"text"},
+    {k:"participants_n", label:"Participants",   type:"text"},
+    {k:"specialist_needs", label:"Specialist needs", type:"text"},
+  ]},
+  { legend: "Coherence", fields: [
+    {k:"coherence_notes", label:"Do the stated aims, assumptions and methods appear to align?", type:"area", tall:true},
+  ]},
+  { legend: "Record", fields: [
+    {k:"coded_on",       label:"Coded on",       type:"text"},
+    {k:"confidence",     label:"Confidence",     type:"select", opts:["","high","medium","low"]},
+    {k:"notes",          label:"Notes",          type:"area", tall:true},
+  ]},
+];
 
+/* Columns carried through from a Zotero or Crossref export. Everything
+   else in the source file is dropped when you save. Add to this list if
+   you want to keep something. */
+const CARRY = [
+  "author",            // from Zotero 'Author'
+  "abstract",          // from Zotero 'Abstract Note' — shown while coding
+  "url",
+  "pdf",               // from Zotero 'File Attachments'
+];
 
-</section>
+// Fields that must be filled for an item to count as "done".
+const REQUIRED = ["genre","confidence"];
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/bensresearch\.space");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+let COLS = [], ROWS = [], cur = -1, dirty = false;
+
+/* ---------------- CSV ---------------- */
+function parseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  text = text.replace(/^\uFEFF/,'').replace(/\r\n/g,'\n');
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; }
+      else cell+=c;
+    } else if(c==='"'){ q=true; }
+    else if(c===','){ row.push(cell); cell=''; }
+    else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
+    else cell+=c;
+  }
+  if(cell!==''||row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.length>1||r[0]!=='');
+}
+function toCSV(cols,rows){
+  const esc=v=>{v=(v==null?'':String(v)); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  return [cols.map(esc).join(',')].concat(rows.map(r=>cols.map(c=>esc(r[c])).join(','))).join('\n');
+}
+
+/* ---------------- state ---------------- */
+function statusOf(r){
+  const filled = REQUIRED.filter(k=>r[k]&&r[k].trim()).length;
+  if(filled===REQUIRED.length) return 'done';
+  if(Object.keys(r).some(k=>!['doi','volume','title','author_surname'].includes(k)&&r[k]&&r[k].trim())) return 'part';
+  return '';
+}
+function renderList(){
+  const el=document.getElementById('list');
+  el.innerHTML = ROWS.map((r,i)=>{
+    const st=statusOf(r);
+    const title=(r.title||r.Title||'(untitled)').slice(0,72);
+    return `<div class="item ${st} ${i===cur?'sel':''}" data-i="${i}">
+      <span class="t"><span class="dot"></span>${escapeHtml(title)}</span>
+      <span class="m">v${escapeHtml(r.volume||r.Volume||'?')} &middot; ${escapeHtml(r.genre||'uncoded')}</span>
+    </div>`;
+  }).join('');
+  [...el.querySelectorAll('.item')].forEach(d=>d.onclick=()=>select(+d.dataset.i));
+  const done=ROWS.filter(r=>statusOf(r)==='done').length;
+  const p=document.getElementById('progress');
+  const d=p.dataset.dropped;
+  p.textContent=`${done} of ${ROWS.length} coded` + (d&&+d>0?`  ·  ${d} source columns dropped`:'');
+}
+function updateListEntry(i){
+  const el=document.querySelector(`.item[data-i="${i}"]`);
+  if(!el){ renderList(); return; }
+  const r=ROWS[i], st=statusOf(r);
+  el.className=`item ${st} ${i===cur?'sel':''}`;
+  el.innerHTML=`<span class="t"><span class="dot"></span>${escapeHtml((r.title||r.Title||'(untitled)').slice(0,72))}</span>
+    <span class="m">v${escapeHtml(r.volume||r.Volume||'?')} &middot; ${escapeHtml(r.genre||'uncoded')}</span>`;
+  el.onclick=()=>select(i);
+  const done=ROWS.filter(x=>statusOf(x)==='done').length;
+  const p=document.getElementById('progress');
+  const d=p.dataset.dropped;
+  p.textContent=`${done} of ${ROWS.length} coded` + (d&&+d>0?`  ·  ${d} source columns dropped`:'');
+}
+
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function select(i){
+  if(i<0||i>=ROWS.length) return;
+  cur=i; renderList(); renderForm();
+  const sel=document.querySelector('.item.sel'); if(sel) sel.scrollIntoView({block:'nearest'});
+  document.getElementById('prev').disabled = cur<=0;
+  document.getElementById('next').disabled = cur>=ROWS.length-1;
+  document.getElementById('del').disabled = cur<0;
+}
+
+function renderForm(){
+  const r=ROWS[cur], f=document.getElementById('form');
+  let links=[];
+  if(r.pdf) links.push(`<a href="file:///${escapeHtml(r.pdf.replace(/\\/g,'/'))}">open PDF</a>`);
+  if(r.url) links.push(`<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">publisher page</a>`);
+  let html=`<h2>${escapeHtml(r.title||'(untitled)')}</h2>
+            <div class="doi">${escapeHtml(r.doi||'')}${r.author?' &middot; '+escapeHtml(r.author):''}
+            ${links.length?' &middot; '+links.join(' &middot; '):''}</div>`;
+  if(r.abstract) html+=`<div class="abs"><p>${escapeHtml(r.abstract)}</p></div>`;
+  for(const s of SECTIONS){
+    const gated = s.gate && !s.gate.allow.includes(r[s.gate.field]||'');
+    html+=`<fieldset class="${gated?'gated':''}"><legend>${s.legend}${gated?' &mdash; not applicable':''}</legend>`;
+    let buf=[];
+    for(const fd of s.fields){
+      const v=escapeHtml(r[fd.k]||'');
+      let input;
+      if(fd.type==='select'){
+        input=`<select data-k="${fd.k}" ${gated?'disabled':''}>`+
+          fd.opts.map(o=>`<option value="${escapeHtml(o)}"${(r[fd.k]||'')===o?' selected':''}>${escapeHtml(o||'—')}</option>`).join('')+
+          `</select>`;
+      } else if(fd.type==='area'){
+        input=`<textarea data-k="${fd.k}" class="${fd.tall?'tall':''}" ${gated?'disabled':''}>${v}</textarea>`;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        input=`<input type="text" data-k="${fd.k}" value="${v}" ${gated?'disabled':''}>`;
       }
+      const block=`<div class="f"><label>${fd.label}</label>${input}</div>`;
+      if(fd.type==='area'){ if(buf.length){html+=`<div class="row">${buf.join('')}</div>`;buf=[];} html+=`<div class="row">${block}</div>`; }
+      else { buf.push(block); if(buf.length===3){html+=`<div class="row">${buf.join('')}</div>`;buf=[];} }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
-          }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
+    if(buf.length) html+=`<div class="row">${buf.join('')}</div>`;
+    html+=`</fieldset>`;
+  }
+  f.innerHTML=html;
+  f.querySelectorAll('[data-k]').forEach(el=>{
+    el.oninput=el.onchange=()=>{
+      ROWS[cur][el.dataset.k]=el.value; dirty=true;
+      // Update only the selected entry in the list. Rebuilding the whole
+      // list on every keystroke destroys the element being typed into.
+      updateListEntry(cur);
     };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
-    }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../scoping-jeap/protocol.html" class="pagination-link" aria-label="Project Protocol">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project Protocol</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
-</div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>© 2026 Ben Nazer | bensresearch.space</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
+  f.scrollTop=0;
+}
 
+/* ---------------- load / save ---------------- */
+// Zotero / Crossref column name -> our name
+const ALIASES = {
+  "DOI":"doi", "Title":"title", "Volume":"volume", "Author":"author",
+  "Abstract Note":"abstract", "Url":"url", "URL":"url",
+  "File Attachments":"pdf", "Date":"date_published",
+};
 
+function load(text){
+  const raw=parseCSV(text);
+  const src=raw[0];
 
+  // the columns we will keep, in a sensible order
+  const codebook=[]; 
+  for(const s of SECTIONS) for(const fd of s.fields) if(!codebook.includes(fd.k)) codebook.push(fd.k);
+  COLS = codebook.concat(CARRY.filter(c=>!codebook.includes(c)));
 
-</body></html>
+  ROWS = raw.slice(1).map(cells=>{
+    const src_row={}; src.forEach((c,i)=>src_row[c]=cells[i]??'');
+    const o={}; COLS.forEach(c=>o[c]='');
+    // copy anything whose name matches, directly or via an alias
+    for(const [k,v] of Object.entries(src_row)){
+      const name = ALIASES[k] || k;
+      if(COLS.includes(name) && v) o[name]=v;
+    }
+    return o;
+  });
+
+  // tell the user what was dropped
+  const kept = src.filter(c=>COLS.includes(ALIASES[c]||c)).length;
+  const dropped = src.length - kept;
+  document.getElementById('progress').dataset.dropped = dropped;
+  document.getElementById('save').disabled=false;
+  select(0);
+
+  try{
+    const raw = localStorage.getItem(SNAP_KEY);
+    if(raw){
+      const snap = JSON.parse(raw);
+      const done = rs => rs.filter(r=>REQUIRED.every(k=>r[k]&&String(r[k]).trim())).length;
+      if(snap.rows.length===ROWS.length && done(snap.rows) > done(ROWS)){
+        if(confirm(`A local snapshot from ${new Date(snap.when).toLocaleString()} has `+
+                   `${done(snap.rows)} items coded; this file has ${done(ROWS)}.\n\nRestore the snapshot?`)){
+          COLS=snap.cols; ROWS=snap.rows; dirty=true; select(0);
+        }
+      }
+    }
+  }catch(e){}
+  if(dropped>0) console.log(`${dropped} source columns dropped; ${COLS.length} kept.`);
+}
+document.getElementById('file').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  f.text().then(load);
+};
+const drop=document.getElementById('drop');
+document.body.ondragover=e=>{e.preventDefault();};
+document.body.ondrop=e=>{
+  e.preventDefault();
+  const f=e.dataTransfer.files[0];
+  if(f && /\.csv$/i.test(f.name)) f.text().then(load);
+};
+document.getElementById('new').onclick=()=>{
+  if(!COLS.length){
+    // starting from scratch: build columns from the codebook
+    COLS=['title'];
+    for(const sec of SECTIONS) for(const fd of sec.fields) if(!COLS.includes(fd.k)) COLS.push(fd.k);
+    document.getElementById('save').disabled=false;
+  }
+  const blank={}; COLS.forEach(c=>blank[c]='');
+  blank.title='(new item)';
+  blank.coded_on=new Date().toISOString().slice(0,10);
+  ROWS.push(blank); dirty=true;
+  select(ROWS.length-1);
+  const f=document.querySelector('#form input[data-k="doi"]'); if(f) f.focus();
+};
+
+document.getElementById('del').onclick=()=>{
+  if(cur<0) return;
+  const t=(ROWS[cur].title||ROWS[cur].Title||'this item').slice(0,60);
+  if(!confirm(`Delete "${t}"?\n\nThis only changes the copy in the browser. Your\nsaved CSV is untouched until you click Save.`)) return;
+  ROWS.splice(cur,1); dirty=true;
+  if(!ROWS.length){ cur=-1; renderList(); document.getElementById('form').innerHTML='<div class="drop">All items deleted. Use <strong>+ New item</strong> or reload a CSV.</div>'; document.getElementById('del').disabled=true; return; }
+  select(Math.min(cur, ROWS.length-1));
+};
+
+/* ---------------- autosave ----------------
+   1. File System Access API (Chrome/Edge): pick the CSV once with
+      "Open CSV…", then the tool writes back to that file every 20s and
+      whenever the window loses focus.
+   2. localStorage snapshot: crash-recovery copy in any browser, offered
+      back on next load if it holds more coded items than the file.
+------------------------------------------------ */
+let fileHandle = null;
+const SNAP_KEY = 'jeap-extraction-snapshot';
+
+function setStat(txt, cls){
+  const el=document.getElementById('autostat');
+  el.textContent=txt; el.className=cls||'';
+}
+
+function snapshot(){
+  try{ localStorage.setItem(SNAP_KEY, JSON.stringify({when:Date.now(), cols:COLS, rows:ROWS})); }
+  catch(e){}
+}
+
+async function writeToFile(){
+  if(!fileHandle || !ROWS.length) return false;
+  try{
+    let perm = await fileHandle.queryPermission({mode:'readwrite'});
+    if(perm!=='granted') perm = await fileHandle.requestPermission({mode:'readwrite'});
+    if(perm!=='granted'){ setStat('autosave needs permission','warn'); return false; }
+    const w = await fileHandle.createWritable();
+    await w.write(toCSV(COLS,ROWS));
+    await w.close();
+    dirty=false;
+    setStat('saved '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),'on');
+    return true;
+  }catch(e){ setStat('autosave failed — use Save CSV','warn'); return false; }
+}
+
+async function autosave(){
+  if(!ROWS.length) return;
+  snapshot();
+  if(dirty && fileHandle) await writeToFile();
+}
+setInterval(autosave, 20000);
+window.addEventListener('blur', autosave);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) autosave(); });
+
+document.getElementById('open').onclick=async()=>{
+  if(!window.showOpenFilePicker){
+    setStat('no file autosave in this browser','warn');
+    document.getElementById('file').click();
+    return;
+  }
+  try{
+    const [h] = await window.showOpenFilePicker({types:[{description:'CSV', accept:{'text/csv':['.csv']}}]});
+    fileHandle = h;
+    load(await (await h.getFile()).text());
+    setStat('autosaving to '+h.name,'on');
+  }catch(e){}
+};
+
+document.getElementById('save').onclick=()=>{
+  const blob=new Blob([toCSV(COLS,ROWS)],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='extraction.csv';
+  a.click();
+  dirty=false;
+};
+document.getElementById('prev').onclick=()=>select(cur-1);
+document.getElementById('next').onclick=()=>select(cur+1);
+
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,select')) return;
+  if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();select(cur+1);}
+  if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();select(cur-1);}
+});
+window.onbeforeunload=()=>dirty?'You have unsaved coding.':null;
+</script>
+</body>
+</html>
