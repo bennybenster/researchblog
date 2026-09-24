@@ -40,27 +40,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to my personal research space",
-    "section": "",
-    "text": "The plan is to document reflections on my research projects related to pre-sessional research, especially where they sit outside of standard outputs for work such as research articles.\nThe goals for setting up this space are:\nThere is currently one active project: Scoping JEAP"
-  },
-  {
-    "objectID": "index.html#recently-updated",
-    "href": "index.html#recently-updated",
-    "title": "Welcome to my personal research space",
-    "section": "Recently Updated",
-    "text": "Recently Updated\n\n\n\n\n\nResearch Log\n\n\nNotes in progress.\n\n\n\n\n\nSep 10, 2026\n\n\n\n\n\n\n\nScoping JEAP, 2024-2025\n\n\nA scoping review of publication patterns and research feasibility in JEAP, 2024-2025\n\n\n\n\n\nSep 7, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact Me",
-    "section": "",
-    "text": "Get in touch\nI am always interested in:\n\nfeedback on my pages\ndiscussions around research and EAP\nsuggestions for research collaboration or similar\n\nUse the form below to send me a message.\nNote the form comment that it is anonymous.\nIf you want me to get back to you, leave an email address or phone number."
-  },
-  {
     "objectID": "scoping-jeap/log.html",
     "href": "scoping-jeap/log.html",
     "title": "Research Log",
@@ -113,6 +92,60 @@
     "crumbs": [
       "Home",
       "Research Log"
+    ]
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact Me",
+    "section": "",
+    "text": "Get in touch\nI am always interested in:\n\nfeedback on my pages\ndiscussions around research and EAP\nsuggestions for research collaboration or similar\n\nUse the form below to send me a message.\nNote the form comment that it is anonymous.\nIf you want me to get back to you, leave an email address or phone number."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to my personal research space",
+    "section": "",
+    "text": "The plan is to document reflections on my research projects related to pre-sessional research, especially where they sit outside of standard outputs for work such as research articles.\nThe goals for setting up this space are:\nThere is currently one active project: Scoping JEAP"
+  },
+  {
+    "objectID": "index.html#recently-updated",
+    "href": "index.html#recently-updated",
+    "title": "Welcome to my personal research space",
+    "section": "Recently Updated",
+    "text": "Recently Updated\n\n\n\n\n\nResearch Log\n\n\nNotes in progress.\n\n\n\n\n\nSep 10, 2026\n\n\n\n\n\n\n\nScoping JEAP, 2024-2025\n\n\nA scoping review of publication patterns and research feasibility in JEAP, 2024-2025\n\n\n\n\n\nSep 7, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "scoping-jeap/tools/coding_tool.html",
+    "href": "scoping-jeap/tools/coding_tool.html",
+    "title": "Extraction form tool",
+    "section": "",
+    "text": "The extraction form on the main page describes what is recorded for each item and why. This page briefly describes the html tool I used to support the extraction process.",
+    "crumbs": [
+      "Home",
+      "Extraction form tool"
+    ]
+  },
+  {
+    "objectID": "scoping-jeap/tools/coding_tool.html#what-it-is",
+    "href": "scoping-jeap/tools/coding_tool.html#what-it-is",
+    "title": "Extraction form tool",
+    "section": "What it is",
+    "text": "What it is\nI consulted Claude.ai (a generative AI tool) to help me develop a tool that uses html code to simplify the extraction process. It accepts a .csv file exported from Zotero, locally loads it (no data is sent anywhere), and allows it to be edited and saved. Items (journal articles) are shown one at a time with free-text fields to type in and dropdowns where appropriate. It will update the file every 20 seconds as a kind of autosave feature.\nEssentially it is a tool for editing and saving a file that holds the data extracted for the analysis.",
+    "crumbs": [
+      "Home",
+      "Extraction form tool"
+    ]
+  },
+  {
+    "objectID": "scoping-jeap/tools/coding_tool.html#using-it",
+    "href": "scoping-jeap/tools/coding_tool.html#using-it",
+    "title": "Extraction form tool",
+    "section": "Using it",
+    "text": "Using it\nExport a collection from Zotero as CSV. Open the tool, click Open CSV… and select the file. The tool maps Zotero’s column names to its own, discards the columns it doesn’t need and adds any extraction fields that are missing.\nNothing is transmitted anywhere. The file is read and written locally through the browser and the page makes no network requests.\nIt is added here ‘as is’ as part of working towards a transparent process. Anyone could, if they wanted to develop something similar, download the html file and edit the field definitions to suit their own extraction project.",
+    "crumbs": [
+      "Home",
+      "Extraction form tool"
     ]
   },
   {
