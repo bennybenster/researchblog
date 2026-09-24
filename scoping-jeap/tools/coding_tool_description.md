@@ -1,6 +1,6 @@
 ---
 title: "Extraction form tool"
-description: "A browser based form for recording extraction data, written with the help of a Generative AI tool."
+description: "A browser form for recording extracted data, written with the help of Generative AI."
 date: 2026-09-24
 date-modified: 2026-09-24
 ---
