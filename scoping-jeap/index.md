@@ -2,7 +2,7 @@
 title: "Scoping JEAP, 2024-2025"
 description: "A scoping review of publication patterns and research feasibility in JEAP, 2024-2025"
 date: 2026-09-07
-date-modified: 2026-09-11
+date-modified: 2026-09-24
 ---
 
 ## Introducing the Project
