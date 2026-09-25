@@ -10,23 +10,22 @@ This is a space to record progress in a scoping review I am working on as a way 
 
 One inspiration for the project work is the article "The contexts, theoretical and methodological orientation of EAP research: Evidence from empirical articles published in the Journal of English for Academic Purposes" [@riaziContextsTheoreticalMethodological2020]. I noticed, however, that the focus on 'the empirical' left other types of content uncounted. Also, having recently completed a Reflexive Thematic Analysis project based on methods discussed in @braunThematicAnalysisPractical2022 [], I have found myself wondering whether there is a predominance of positivist, rather than interpretive, research within published articles. And, of course, one way to find out what kind of publications are published in JEAP is to conduct my own analysis. 
 
-Finally, as a practitioner-researcher with a full-time job, d
-octoral studies, and the desire to be a fully engaged parent to my young child, I sometimes find myself asking how others find time to complete high quality research. Are there barriers for entry into the conversation based around access to research resources? What kinds of research might be feasible for myself or similar individuals in my position?
+Finally, as a practitioner-researcher with a full-time job, doctoral studies, and the desire to be a fully engaged parent to my young child, I sometimes find myself asking how others find time to complete high quality research. Are there barriers for entry into the conversation based around access to research resources? What kinds of research might be feasible for myself or similar individuals in my position?
 
 ### Research Questions
-The review aims to investigate what kinds of work appear in JEAP, on what epistemological terms and at what cost to produce. I am interested in who is able to participate in the field's published conversation. My initial plan is to focus on the volumes published (in print) in 2025, specifically volumes 73 to 78. Initially, I had conceived the project to span two or more years, but I have decided to research one complete year initially to manage the scope of the project. 
+The review aims to investigate what kinds of work appear in JEAP, using which research approaches, and at what cost to produce. I am interested in who is able to participate in the field's published conversation. 
 
 The (draft) research questions are: 
 
 1. What was published, and what did it claim to do?
     a. How were items distributed across genres?
     b. What kinds of contribution did items of each genre claim to make?
-2. What can be said about the epistemological frameworks of published work?
-    a. How often are epistemological or methodological positions made explicit?
-    b. Where an epistemological or methodological stance is taken, which appear and how often?
+2. How do published items describe their approach to research?
+    a. How often do items name their epistemology, their methodology, or theoretical frameworks?
+    b. Which are named, and how often.
 3. What can be said about the resources engaged in producing the publications?
     a. What resources, such as team size, funding, and specialist requirements were employed to develop the published work?
-    b. What proportion could feasibly have been produced by a sole, unfunded practitioner-researcher at a single site within a limited time scale?
+    b. What proportion could feasibly have been produced by a sole, unfunded practitioner-researcher at a single site within a limited timescale?
 
 ### Approach: Why a Scoping Review?
 Systematic secondary research approaches are potentially appealing, at least initially, for two main reasons. Firstly, there is the popularity of these types of synthesis. As predicted in @norrisFutureResearchSynthesis2007 [] there is growing interest in how such approaches can be applied to the field of applied linguistics [@chongTypologySecondaryResearch2024, p. 1570]. Secondly, there is the appeal of being able to produce work without additional complications of access to sites of learning and with no requirement to seek ethical approval for work with human participants. That is, systematic secondary research appears, at least initially, to be relatively more appropriate for a researcher with limited resources. 
@@ -40,10 +39,10 @@ One strong need to establish my grounds for trustworthiness is that the literatu
 
 An example of Guba & Lincoln's [-@gubaEpistemologicalMethodologicalBases1982] ideas being developed to argue for trustworthiness for more recent research can be found in @nowellThematicAnalysisStriving2017b []'s work on Thematic Analysis. As in the title of their paper, I am 'striving to meet the trustworthiness criteria' in a number of key ways. Firstly, credibility can be enhanced through prolonged engagement with research data, data collection triangulation (as it was described above) and Guba & Lincoln's [-@gubaEpistemologicalMethodologicalBases1982] 'peer debriefing', which refers to sharing my work-in-progress and developing insights with uninvolved peers. I believe that developing this research as an online, freely accessible, and fully documented study allows me to do this. Secondly, as in @nowellThematicAnalysisStriving2017b [p. 3], transferability refers to the extent to which others can apply research clearly based in a specific context or field to their own contexts or requirements. The advice here, also found in @gubaEpistemologicalMethodologicalBases1982 [p. 248] is to use 'thick description', firstly so the reader fully understands the context of the original research, and secondly so that they can make their own decisions about how much of the findings relate to a 'second or similar context.' Dependability involves ensuring that research processes are transparent and that decisions made in the course of the research appear logical and appropriate to the task [@nowellThematicAnalysisStriving2017b, p. 3]. Working towards both dependability and confirmability requires pulling similar levers of clear and coherent documentation of work produced in the processes of producing it. The idea is to ensure that the reader is clear about how findings were developed, and which claims relate to which aspects of the data. In fact, @gubaEpistemologicalMethodologicalBases1982 [p. 248] recommend the use of an 'auditor' to check and advise the researcher's 'working out.' Similarly, @nowellThematicAnalysisStriving2017b [] argue that a clear audit trail is essential to meeting the trustworthiness criteria. My response to this is, as already noted, to develop this project openly on the internet, using a publicly available git repository to update my work in progress. This should provide an extensive, traceable, and coherent audit trail and while I do not have a specific auditor, I have peers and a doctoral supervisor to offer advice as the project unfolds. 
 
-Across multiple sources listed above, the advice to be a reflexive researcher, or be reflexive in conducting research, is a common request. @braunThematicAnalysisPractical2022 [p. 5] describe reflexivity as 'critical reflection' on 'your role as a researcher, and your research practice and process' and place reflexivity as a defining skill for the development of quality qualitative analysis. The reflexive journal [@braunThematicAnalysisPractical2022, p. 293] is a key aspect of reflexive practice and @nowellThematicAnalysisStriving2017b [p. 3] recommend the researcher 'record the daily logistics of the research, methodological decisions and rationales and to record personal reflections of their values and interests.' I intend to keep a log and update it regularly. However, the reflexive journals discussed in the literature are intended as private, personal documents. The fact that I will update my logs online will have an effect on how candid my reflections are. 
+Across multiple sources listed above, the advice to be a reflexive researcher, or be reflexive in conducting research, is a common request. @braunThematicAnalysisPractical2022 [p. 5] describe reflexivity as 'critical reflection' on 'your role as a researcher, and your research practice and process' and place reflexivity as a defining skill for the development of quality qualitative analysis. The reflexive journal [@braunThematicAnalysisPractical2022, p. 293] is a key aspect of reflexive practice and @nowellThematicAnalysisStriving2017b [p. 3] recommend the researcher 'record the daily logistics of the research, methodological decisions and rationales and to record personal reflections of their values and interests.' I have been keeping a log and update it regularly. However, the reflexive journals discussed in the literature are intended as private, personal documents. The fact that I will update my logs online will have an effect on how candid my reflections are. 
 
 ### Developing a research instrument
-Following Arksey & O'Malley's [-@arkseyScopingStudiesMethodological2005] framework, the research questions have been written and I have identified the relevant studies. In taking the entire corpus of specific volumes, stage three of the framework does not really apply to this study. The next step, stage four, is to develop the 'data-charting form and determine which variables to extract in order to answer the research question.' [@levacScopingStudiesAdvancing2010, p. 4]. This will be done by initially piloting the extraction form with Volume 63 of JEAP, published in May 2023. 
+Following Arksey & O'Malley's [-@arkseyScopingStudiesMethodological2005] framework, the research questions have been written and I have identified the relevant studies. In taking the entire corpus of specific volumes, stage three of the framework does not really apply to this study. The next step, stage four, is to develop the 'data-charting form and determine which variables to extract in order to answer the research question.' [@levacScopingStudiesAdvancing2010, p. 4]. This was done by initially piloting the extraction form with Volume 63 of JEAP, published in May 2023. 
 
 The pilot version of the form is outlined below:
 
@@ -57,7 +56,7 @@ The pilot version of the form is outlined below:
 |Evidence / Location |RQ1|For confirmability, I plan to link the notes on contribution claimed to a specific section of the article.|
 |Epistemology named? |RQ2|Where the author has explicitly linked to an epistemological framing, this can be counted to contribute to quantitative data.|
 |Language used  |RQ2|To record the language used around epistemological framing. This may be appropriate for thematic analysis at a later stage.|
-|Methodology or Method named?   |RQ2|Where the author has explicitly linked to a methodological approach, this can be counted to contribute to quantitative data.|
+|Methodology named?   |RQ2|Where the author has explicitly linked to a methodological approach, this can be counted to contribute to quantitative data.|
 |Language used|RQ2|To record the language used around methodological approach.|
 |Notes and inferences|RQ2|Where epistemology and methodology are not stated clearly, this is a space for me to interpret the approach and take notes that may be appropriate for thematic analysis at a later stage.|
 |Evidence / Location|RQ2|For confirmability, I need to link my notes on epistemology and methodology to specific sections of the article.|
@@ -72,6 +71,17 @@ The pilot version of the form is outlined below:
 |Notes|Any|To help me take reflexive notes, ask questions of the data, or highlight aspects of the article I may wish to investigate further.| 
 
 I should add here that Research Question RQ3b suggests a count of studies to assess which are more feasible for the sole researcher. This will require analysis of the data extracted around RQ3, and is not something I will attempt to code on the first pass.
+
+After the piloting I made a number of major decisions. Firstly, due to the amount of time it would take to code multiple years of JEAP publications, I reduced the scope from a planned two (print) years to only one print year. I consider this to be the core of my analysis, with the potential to expand the project later. Secondly, I added the following fields to the extraction form: 
+
+| Field(s) | RQ |  Rationale and Notes |
+|-|-|-----|
+|Framework(s) named|RQ2|In the pilot, I found studies that didn't necessarily name an epistemology or methodology in those terms, but which still had organising design principles. Examples included a paper organised around Complex Dynamic Systems Theory (CDST) and papers that used taxonomies or coding frameworks previously developed. I decided the term 'frameworks' could capture such declarations. This observation also led to a slight rewrite of RQ2.     |
+|Coherence|RQ2|I realised that I wanted to take notes around conceptual coherence. I wondered, for example, if I might find further examples that supported Riazi et al.'s [-@riaziTrustworthinessL2Writing2023] findings. That is, do some interpretive studies use warrants of quality more commonly associated with quantitative research methods?  |
+|Data Window|RQ3|Considering time to be a resource, I realised that some studies had many years of data collection, which could have an impact on how feasible a study might be to complete.|
+|Received & Accepted  |RQ3|Again, considering time to be a resource, I noticed that some articles were accepted after a relatively short window from submission, where some took years to be accepted. |
+
+Following this instrument development process, and following best practice as outlined in @chongSynthesisMethodsReporting2025 [p. 25] I decided to register my protocol with the International Database of Education Systematic Reviews. The final extraction form is reproduced on my ['protocol' page](./protocol.html) along with other details relevant to protocol registration. 
 
 ## References
 ::: {#refs}
