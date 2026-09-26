@@ -39,7 +39,7 @@ website:
 
 bibliography: references.bib
 
-csl: journal-of-english-for-academic-purposes.csl
+csl: apa.csl
 
 format:
   html:
