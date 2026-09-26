@@ -21,7 +21,7 @@ website:
 
   sidebar:
     - id: scoping-jeap
-      title: "Scoping JEAP, 2024-2026"
+      title: "Scoping JEAP"
       style: floating
       collapse-level: 2
       contents:
