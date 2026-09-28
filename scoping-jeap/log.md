@@ -29,7 +29,7 @@ I also decided to limit the scope of the research significantly for feasibility 
 I had a 'peer debriefing' with my supervisor about this project, and we discussed the extraction form and the possibility that the ability to pilot studies was also a potential resource. As I have discovered with this project, piloting is a time-consuming but valuable process, so it is relevant. However, I have not worked out if this can be worked into the extraction form. In any case, this was a fruitful discussion, and important when working towards credibility. 
 
 ## 25th September 2026
-I decided now is the time to register my protocol. I decided to us IDESR again. I have used it previously and it is the protocol recommended in @chongSynthesisMethodsReporting2025. While registering my protocol I want to revisit my RQs and check they still matched the updated extraction form. I decided my ideas around potential 'frameworks' needed to be noted in the RQs and adapted RQ2 to suit from:
+I decided now is the time to register my protocol. I decided to use IDESR again. I have used it previously and it is the protocol recommended in @chongSynthesisMethodsReporting2025. While registering my protocol I want to revisit my RQs and check they still matched the updated extraction form. I decided my ideas around potential 'frameworks' needed to be noted in the RQs and adapted RQ2 from:
 
 2. What can be said about the epistemological frameworks of published work?
     a. How often are epistemological or methodological positions made explicit?
@@ -40,9 +40,6 @@ To:
 2. How do published items describe their approach to research?
     a. How often do items name their epistemology, their methodology, or theoretical frameworks?
     b. Which are named, and how often?
-
-
-
 
 ## References
 ::: {#refs}
